@@ -16,7 +16,7 @@ dotenv.config()
 
 app.use(express.json())
 app.use(cors({
-    origin:["http://localhost:5173"],
+    origin:["http://localhost:5173","https://bimscollection.vercel.app"],
     allowedHeaders : ["Content-Type" ,"Authorization","auth-token"],
     methods : ["GET", "POST","PUT","PATCH", "DELETE"],
     credentials : true
