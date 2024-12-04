@@ -1,4 +1,6 @@
 const express = require('express');
+const swaggerUi = require("swagger-ui-express");
+const swaggerJsDoc = require("swagger-jsdoc");
 const app =express();
 const connectDB = require('./config/db');
 const dotenv = require('dotenv');
@@ -20,12 +22,37 @@ app.use(cors({
     credentials : true
 }))
 
+
+const swaggerOptions = {
+    swaggerDefinition: {
+      openapi: "3.0.0",
+      info: {
+        title: "Ecommerce API",
+        version: "1.0.0",
+        description: "API information for your Ecommerce Express app",
+        contact: {
+          name: "Ojo Oluwapelumi",
+          email: "wuraolami2001@gmail.com",
+        },
+        servers: [
+          {
+            url: "http://localhost:8000",
+          },
+        ],
+      },
+    },
+    apis: ["./routers/*.js"], // Path to your API files
+  };
+
 app.use("/uploads", express.static("uploads"))
 app.use("/", categoryRouters)
 app.use("/", productRouters)
 app.use("/", authRouters)
 app.use("/", cartRouters)
 app.use("/", paymentRouters)
+
+const swaggerDocs = swaggerJsDoc(swaggerOptions);
+app.use("/", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 const port = process.env.PORT || 5000;
 app.listen(port, ()=>console.log(`listening on port ${port}`)

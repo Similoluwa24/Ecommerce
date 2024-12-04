@@ -10,16 +10,16 @@ const categorySchema = Joi.object({
 
 //productSchema
 const productSchema = Joi.object({
-    category : Joi.string().required(),
-    name : Joi.string().required(),
-    price : Joi.number().required(),
+    category : Joi.string(),
+    name : Joi.string(),
+    price : Joi.number(),
     // amount : Joi.number(),
     // quantity: Joi.number(),
     // image: Joi.array().required(),
     // // .items({
     // //     img : Joi.string().required()
     // // }),
-    description : Joi.string().required(),
+    description : Joi.string(),
     featured : Joi.boolean(),
     topSelling : Joi.boolean() 
 

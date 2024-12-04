@@ -5,7 +5,7 @@ const productSchema = new mongoose.Schema({
     category : {
         type: mongoose.Schema.Types.ObjectId,
         ref : "Categories",
-        required : true
+        required : false
     },
     name : {
         type : String,
@@ -26,10 +26,12 @@ const productSchema = new mongoose.Schema({
         required : true
     },
     featured :{
-        type : Boolean
+        type : Boolean,
+        default:true
     },
     topSelling : {
-        type : Boolean
+        type : Boolean,
+        default:true
     }
 }, {timestamps: true})
 

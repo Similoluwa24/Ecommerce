@@ -68,7 +68,6 @@ exports.initiatePayment = async (req, res) =>{
     }
 }
 
-
 exports.verifyPayment = async (req, res) => {
     const {transaction_id, orderId} = req.body
     try {
@@ -117,14 +116,6 @@ exports.verifyPayment = async (req, res) => {
     }
 }
 
-// exports.getOrder = async(req, res)=>{
-//     const order = await Order.find(req.user._id)
-//     if(!order) {
-//         res.status(400).json("Oga go and register now!..")
-//     }
-//     res.json(order)
-// }
-
 exports.getOrder = async (req, res) => {
     try {
       const order = await Order.findOne({ userId: req.user._id });
@@ -136,11 +127,13 @@ exports.getOrder = async (req, res) => {
       console.error(error);
       res.status(500).json({ message: "Internal Server Error" });
     }
-  };
+}
 
 exports.getAllOrders =  async(req, res)=>{
     const order = await Order.find()
     res.status(200).json({
-        
+      success: true,
+      count: order.length,
+      order  
     })
 }
